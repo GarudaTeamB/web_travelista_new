@@ -24,8 +24,6 @@ class CreatePlacesTable extends Migration
             $table->string('tags');
             $table->integer('user_id')->unsigned();
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('Cascade');
         });
     }
 

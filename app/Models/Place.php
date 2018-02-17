@@ -11,7 +11,12 @@ class Place extends Model
 
     public function user()
     {
-      return $this->belongsTo('App\Models\User');
+      return $this->belongsTo('App\Models\User','id','user_id');
+    }
+
+    public function events()
+    {
+      return $this->hasMany('App\Models\Event','id_tempat','id');
     }
 
 }

@@ -7,7 +7,7 @@ use App\Models\Place;
 
 class PlaceController extends Controller
 {
-    public function tambah(Request $request)
+    public function tambah_tempat(Request $request)
     {
         $this->validate($request,[
           'nama_tempat'  => 'required',

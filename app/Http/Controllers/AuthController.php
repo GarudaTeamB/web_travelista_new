@@ -17,6 +17,7 @@ class AuthController extends Controller
     		'username' 	   => 'required|unique:users',
     		'email' 	     => 'required|unique:users',
     		'password' 	   => 'required',
+        'nomor_hp'     => 'required',
         'tgl_lahir'    => 'required',
         'tempat_lahir' => 'required'
     	]);
@@ -25,6 +26,7 @@ class AuthController extends Controller
     		'username' 	    => $request->json('username'),
     		'email' 	      => $request->json('email'),
     		'password' 	    => bcrypt($request->json('password')),
+        'nomor_hp'      => $request->json('nomor_hp'),
         'tgl_lahir'     => $request->json('tgl_lahir'),
         'tempat_lahir'  => $request->json('tempat_lahir')
     	]);
@@ -37,11 +39,11 @@ class AuthController extends Controller
     {
 
         $this->validate($request, [
-            'username' => 'required',
+            'nomor_hp' => 'required',
             'password' => 'required'
         ]);
 
-                $credentials = $request->only('username', 'password');
+                $credentials = $request->only('nomor_hp', 'password');
 
         try {
             // attempt to verify the credentials and create a token for the user
@@ -58,6 +60,8 @@ class AuthController extends Controller
         return response()->json([
             'user_id' => $request->user()->id,
             'username yang login saat ini' => $request->user()->username,
+            'Nomor Handphone' => $request->user()->nomor_hp,
+            'E-mail'  => $request->user()->email,
             'token' => $token
         ]);
 

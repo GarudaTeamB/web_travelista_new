@@ -18,7 +18,7 @@ class User extends Authenticatable
      protected $table = 'users';
 
      protected $fillable = [
-         'username','email','password','tgl_lahir','tempat_lahir'
+         'username','email','nomor_hp','password','tgl_lahir','tempat_lahir'
      ];
 
      protected $hidden = [
@@ -27,8 +27,12 @@ class User extends Authenticatable
 
      public function places()
      {
-       return $this->hasMany('App\Models\Place');
+       return $this->hasMany('App\Models\Place','user_id','id');
      }
 
+     public function komentars()
+     {
+       return $this->hasMany('App\Models\Komentar','user_id','id');
+     }
 
 }
